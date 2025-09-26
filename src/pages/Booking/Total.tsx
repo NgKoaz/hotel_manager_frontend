@@ -1,4 +1,4 @@
-import { RoomApiResponse } from '@/api/room.api';
+import { GetBatchRoomResponse } from '@/api/dto/room';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Discount } from '@/types/Discount';
 import { formatPrice } from '@/utils/formater.util';
@@ -10,7 +10,7 @@ interface TotalProps {
     total: number;
     discounts: Discount[];
     discountedList: {discountId: number, amount: number}[];
-    roomApiRes: RoomApiResponse
+    roomApiRes: GetBatchRoomResponse
 }
 
 

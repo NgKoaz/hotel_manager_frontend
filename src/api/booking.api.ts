@@ -10,6 +10,7 @@ import { PaymentDiscount } from "@/types/PaymentDiscount";
 import { PaymentTransaction } from "@/types/PaymentTransaction";
 import { Discount } from "@/types/Discount";
 import { RoomType } from "@/types/RoomType";
+import { GetBatchBookingResponse } from "./dto/booking";
 
 
 export interface BookingRequest {
@@ -26,18 +27,6 @@ export interface BookingRequest {
   discounts?: number[];
 }
 
-
-export interface GetAll2BookingResponse {
-  bookings: Booking[];
-  bookingItems: BookingItem[];
-  addons: Addon[];
-  rooms: Room[];
-  payments: Payment[];
-  paymentDiscounts: PaymentDiscount[];
-  paymentTransactions: PaymentTransaction[];
-  discounts: Discount[];
-  roomTypes: RoomType[];
-}
 
 const API = axios.create({
   baseURL: API_URL_V1,
@@ -59,8 +48,8 @@ export const bookingApi = {
     return response.data;
   },
 
-  getAll2: async (): Promise<GetAll2BookingResponse> => {
-    const response: AxiosResponse<GetAll2BookingResponse> = await API.get("/bookings?type=2");
+  getAll2: async (): Promise<GetBatchBookingResponse> => {
+    const response: AxiosResponse<GetBatchBookingResponse> = await API.get("/bookings?type=2");
     return response.data;
   },
 

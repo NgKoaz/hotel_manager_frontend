@@ -14,7 +14,8 @@ import { RoomType } from '@/types/RoomType';
 import { Amenity } from '@/types/Amenity';
 import { formatPrice } from '@/utils/formater.util';
 import RoomGrid from './RoomGrid';
-import { roomApi, RoomApiResponse } from '@/api/room.api';
+import { roomApi } from '@/api/room.api';
+import { GetBatchRoomResponse } from '@/api/dto/room';
 import { BedType } from '@/types/BedType';
 import { RoomTypeImage } from '@/types/RoomTypeImage';
 import FilterBar from './FilterBar';
@@ -48,7 +49,7 @@ const Rooms: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('all');
   const [priceRange, setPriceRange] = useState('all');
-  const [roomApiRes, setRoomApiRes] = useState<RoomApiResponse>();
+  const [roomApiRes, setRoomApiRes] = useState<GetBatchRoomResponse>();
 
   useEffect(() => {
     roomApi.getAll().then(setRoomApiRes).catch(err => console.log(err))

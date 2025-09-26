@@ -10,11 +10,11 @@
 // import { BookingItemTypeEnum } from "@/enums/BookingItemType.enum";
 // import { Booking } from "@/types/Booking";
 // import { bookingApi } from "@/api/booking.api";
-// import { roomApi, RoomApiResponse } from "@/api/room.api";
+// import { roomApi, GetBatchRoomResponse } from "@/api/room.api";
 // import { toast } from "sonner";
 
 // const BookingItemPage: React.FC = () => {
-//   const [roomApiRes, setRoomApiRes] = useState<RoomApiResponse>();
+//   const [roomApiRes, setRoomApiRes] = useState<GetBatchRoomResponse>();
 //   const [booking, setBooking] = useState<Booking>(null);
 //   const [bookingItems, setBookingItems] = useState<BookingItem[]>([]);
 

@@ -1,4 +1,4 @@
-import { RoomApiResponse } from "@/api/room.api";
+import { GetBatchRoomResponse } from "@/api/dto/room";
 import RoomCard from "./RoomCard";
 import { Room } from "@/types/Room";
 import { RoomType } from "@/types/RoomType";
@@ -6,7 +6,7 @@ import { RoomType } from "@/types/RoomType";
 
 interface RoomCardProps {
     filteredRoomType: RoomType[]
-    roomApiRes: RoomApiResponse;
+    roomApiRes: GetBatchRoomResponse;
 }
 
 

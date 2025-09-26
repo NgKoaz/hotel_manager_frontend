@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Users, Bed, Bath } from "lucide-react";
 import { formatPrice } from "@/utils/formater.util";
 import { useNavigate } from "react-router-dom";
-import { RoomApiResponse } from "@/api/room.api";
+import { GetBatchRoomResponse } from "@/api/dto/room";
 import { RoomType } from "@/types/RoomType";
 import RoomGallery from "./RoomGallery";
 
 
 interface RoomCardProps {
   roomType: RoomType;
-  roomApiRes: RoomApiResponse;
+  roomApiRes: GetBatchRoomResponse;
 }
 
 const RoomCard = ({ roomType, roomApiRes }: RoomCardProps) => {

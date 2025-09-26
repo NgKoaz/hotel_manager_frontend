@@ -1,9 +1,8 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { bookingApi, GetAll2BookingResponse } from "@/api/booking.api";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { bookingApi } from "@/api/booking.api";
+import { GetBatchBookingResponse } from '@/api/dto/booking';
 import { BookingStatusEnum } from "@/enums/BookingStatus.enum";
 import { Button } from '@/components/ui/button';
-import { Booking } from "@/types/Booking";
 import { useEffect, useState } from "react";
 import BasicBookingInfo from "./BasicBookingInfo";
 import { toast } from "sonner";
@@ -22,7 +21,7 @@ const selectBookingStatusList = Object.keys(BookingStatusEnum)
 
 
 const ConfirmBookingPage: React.FC = () => {
-    const [bookingRes, setBookingRes] = useState<GetAll2BookingResponse>(null);
+    const [bookingRes, setBookingRes] = useState<GetBatchBookingResponse>(null);
     const [selectedBookingStatus, setSelectedBookingStatus] = 
         useState<BookingStatusEnum | number>(0);
     const [searchBookingId, setSearchBookingId] = useState<number>(0);

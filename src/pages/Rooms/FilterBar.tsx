@@ -2,12 +2,12 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { RoomApiResponse } from '@/api/room.api';
+import { GetBatchRoomResponse } from '@/api/dto/room';
 import { SetStateAction } from 'react';
 
 
 interface FilterBarProps {
-  roomApiRes: RoomApiResponse | undefined;
+  roomApiRes: GetBatchRoomResponse | undefined;
   searchTerm: string;
   setSearchTerm: React.Dispatch<SetStateAction<string>>;
   selectedType: string;

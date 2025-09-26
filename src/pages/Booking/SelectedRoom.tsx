@@ -1,4 +1,4 @@
-import { RoomApiResponse } from '@/api/room.api';
+import { GetBatchRoomResponse } from '@/api/dto/room'; 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -6,7 +6,7 @@ import { X } from 'lucide-react';
 import { Room } from '@/types/Room';
 
 interface SelectedRoomProps {
-  roomApiRes: RoomApiResponse;
+  roomApiRes: GetBatchRoomResponse;
   roomIds: number[];
   setRoomIds: React.Dispatch<React.SetStateAction<number[]>>;
 }

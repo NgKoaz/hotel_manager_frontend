@@ -9,7 +9,8 @@ import { Addon } from '@/types/Addon';
 import BookingAddon from './BookingAddon';
 import CheckInOut from './CheckInOut';
 import SelectPeopleSize from './SelectPeopleSize';
-import { roomApi, RoomApiResponse } from '@/api/room.api';
+import { roomApi } from '@/api/room.api';
+import { GetBatchRoomResponse } from '@/api/dto/room';
 import BookingRoom from './BookingRoom';
 import SelectedRoom from './SelectedRoom';
 import { bookingApi } from '@/api/booking.api';
@@ -59,7 +60,7 @@ const BookingMulti: React.FC = () => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
 
-  const [roomApiRes, setRoomApiRes] = useState<RoomApiResponse>();  
+  const [roomApiRes, setRoomApiRes] = useState<GetBatchRoomResponse>();  
 
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");

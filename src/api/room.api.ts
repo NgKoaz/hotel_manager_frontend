@@ -1,28 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { API_URL_V1 } from "./config.api";
 import { Room } from "@/types/Room";
-import { RoomType } from "@/types/RoomType";
-import { Floor } from "@/types/Floor";
-import { RoomStatus } from "@/types/RoomStatus";
-import { RoomTypeImage } from "@/types/RoomTypeImage";
-import { RoomTypeAmenity } from "@/types/RoomTypeAmenity";
-import { Amenity } from "@/types/Amenity";
-import { BedType } from "@/types/BedType";
-import { RoomTypeBedType } from "@/types/RoomTypeBedType";
-import { Addon } from "@/types/Addon";
-
-export interface RoomApiResponse {
-  rooms: Room[];
-  roomTypes: RoomType[];
-  roomStatuses: RoomStatus[];
-  roomTypeAmenities: RoomTypeAmenity[];
-  roomTypeBedTypes: RoomTypeBedType[];
-  amenities: Amenity[];
-  addons: Addon[];
-  bedTypes: BedType[];
-  floors: Floor[];
-  images: RoomTypeImage[];
-}
+import { GetBatchRoomResponse } from "./dto/room";
 
 const API = axios.create({
   baseURL: API_URL_V1,
@@ -33,8 +12,8 @@ const API = axios.create({
 
 export const roomApi = {
   // Get all rooms + related data
-  async getAll(): Promise<RoomApiResponse> {
-    const res: AxiosResponse<RoomApiResponse> = await API.get("/rooms");
+  async getAll(): Promise<GetBatchRoomResponse> {
+    const res: AxiosResponse<GetBatchRoomResponse> = await API.get("/rooms");
     return res.data;
   },
 

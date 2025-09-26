@@ -1,12 +1,13 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { formatPrice } from "../../utils/formater.util"
-import { roomApi, RoomApiResponse } from '@/api/room.api';
+import { roomApi } from '@/api/room.api';
+import { GetBatchRoomResponse } from '@/api/dto/room';
 import { Button } from '@/components/ui/button';
 
 
 interface BookingRoomProps {
-    roomApiRes: RoomApiResponse;
+    roomApiRes: GetBatchRoomResponse;
     roomIds: number[];
     roomTypeIdSelected: number;
     setRoomTypeIdSelected: React.Dispatch<React.SetStateAction<number>>;

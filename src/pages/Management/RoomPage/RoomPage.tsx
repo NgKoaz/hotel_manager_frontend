@@ -4,38 +4,40 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Edit2, Save, X, Home } from "lucide-react";
-import { roomApi, RoomApiResponse } from "@/api/room.api";
+import { roomApi } from "@/api/room.api";
+import { GetBatchRoomResponse } from "@/api/dto/room";
 import { Room } from "@/types/Room";
 import { RoomStatus } from "@/types/RoomStatus";
 import { RoomType } from "@/types/RoomType";
 import { Floor } from "@/types/Floor";
 
+
 const RoomPage: React.FC = () => {
-  const [rooms, setRooms] = useState<Room[]>([]);
-  const [floors, setFloors] = useState<Floor[]>([]);
-  const [roomTypes, setRoomTypes] = useState<RoomType[]>([]);
-  const [roomStatuses, setRoomStatuses] = useState<RoomStatus[]>([]);
+    const [rooms, setRooms] = useState<Room[]>([]);
+    const [floors, setFloors] = useState<Floor[]>([]);
+    const [roomTypes, setRoomTypes] = useState<RoomType[]>([]);
+    const [roomStatuses, setRoomStatuses] = useState<RoomStatus[]>([]);
 
-  const [editingId, setEditingId] = useState<number | null>(null);
-  const [editValues, setEditValues] = useState<Partial<Room>>({});
+    const [editingId, setEditingId] = useState<number | null>(null);
+    const [editValues, setEditValues] = useState<Partial<Room>>({});
 
-  const [newRoomNumber, setNewRoomNumber] = useState<number>(0);
-  const [newFloorId, setNewFloorId] = useState<number>(0);
-  const [newRoomTypeId, setNewRoomTypeId] = useState<number>(0);
-  const [newRoomStatusId, setNewRoomStatusId] = useState<number>(0);
-  const [newViewTypeId, setNewViewTypeId] = useState<number>(0);
+    const [newRoomNumber, setNewRoomNumber] = useState<number>(0);
+    const [newFloorId, setNewFloorId] = useState<number>(0);
+    const [newRoomTypeId, setNewRoomTypeId] = useState<number>(0);
+    const [newRoomStatusId, setNewRoomStatusId] = useState<number>(0);
+    const [newViewTypeId, setNewViewTypeId] = useState<number>(0);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res: RoomApiResponse = await roomApi.getAll();
-        setRooms(res.rooms);
-        setFloors(res.floors);
-        setRoomTypes(res.roomTypes);
-        setRoomStatuses(res.roomStatuses);
-      } catch (err) {
-        console.error(err);
-      }
+        const fetchData = async () => {
+        try {
+            const res: GetBatchRoomResponse = await roomApi.getAll();
+            setRooms(res.rooms);
+            setFloors(res.floors);
+            setRoomTypes(res.roomTypes);
+            setRoomStatuses(res.roomStatuses);
+        } catch (err) {
+            console.error(err);
+        }
     };
     fetchData();
   }, []);

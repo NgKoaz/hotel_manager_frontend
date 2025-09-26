@@ -1,4 +1,3 @@
-import { GetAll2BookingResponse } from '@/api/booking.api';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -7,12 +6,13 @@ import { BookingStatusEnum } from '@/enums/BookingStatus.enum';
 import { PaymentStatusEnum } from '@/enums/PaymentStatus.enum';
 import { Booking } from '@/types/Booking';
 import { formatDateTime, formatPrice } from '@/utils/formater.util';
+import { GetBatchBookingResponse } from '@/api/dto/booking';
 
 
 type BasicBookingInfoProps = {
   children?: React.ReactNode;
   booking: Booking;
-  bookingRes: GetAll2BookingResponse;
+  bookingRes: GetBatchBookingResponse;
 };
 
 

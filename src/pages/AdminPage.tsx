@@ -9,7 +9,7 @@ import AmenityPage from './Management/AmenityPage';
 import BetTypePage from './Management/BedTypePage';
 import DiscountPage from "@/pages/Management/DiscountPage";
 import FloorPage from "@/pages/Management/FloorPage";
-import RoomPage from "@/pages/Management/RoomPage";
+import RoomPage from "@/pages/Management/RoomPage/RoomPage";
 import RoomTypeAmenityPage from "@/pages/Management/RoomTypeAmenityPage";
 import RoomTypeImagePage from "@/pages/Management/RoomTypeImagePage";
 import UserPage from "@/pages/Management/UserPage";
