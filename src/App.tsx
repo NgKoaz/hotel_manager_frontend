@@ -13,7 +13,6 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
 import AdminPage from './pages/AdminPage';
-import RoomsXX from './pages/Roomsxx';
 
 const queryClient = new QueryClient();
 
@@ -32,7 +31,6 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/management" element={<Layout><AdminPage /></Layout>} />
-            <Route path="/rooms2" element={<Layout><RoomsXX /></Layout>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

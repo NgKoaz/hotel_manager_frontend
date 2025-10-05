@@ -1,4 +1,5 @@
 import { myApi } from '@/api/my.api';
+import { RoleEnum } from '@/enums/Role.enum';
 import { User } from '@/types/User';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
@@ -6,6 +7,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 interface AuthContextType {
   user: User | null;
   roleIds: number[];
+  checkedProfile: boolean;
   login: (identifier: string, password: string) => Promise<boolean>;
   register: (
     firstName: string,
@@ -17,11 +19,14 @@ interface AuthContextType {
   ) => Promise<boolean>;
   logout: () => void;
   isAuthenticated: boolean;
+  isAdmin: () => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [checkedProfile, setCheckedProfile] = useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
   const [roleIds, setRoleIds] = useState<number[]>([]);
 
@@ -30,13 +35,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       .then((data) => {
         setUser(data.user);
         setRoleIds(data.roles);
+        setCheckedProfile(true);
+        setIsAuthenticated(true);
       })
       .catch(err => {
         console.error(err);
         setUser(null);
         setRoleIds([]);
+        setCheckedProfile(true);
       });
-
   }, []);
 
   
@@ -94,14 +101,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // localStorage.removeItem('hotel_user');
   };
 
+  const isAdmin = () => {
+    return roleIds.length > 0 && roleIds.some(id => id == RoleEnum.Admin || id == RoleEnum.Receptionist);
+  }
+
   return (
     <AuthContext.Provider value={{
       user,
       roleIds,
+      checkedProfile,
       login,
       register,
       logout,
-      isAuthenticated: !!user
+      isAuthenticated,
+      isAdmin
     }}>
       {children}
     </AuthContext.Provider>

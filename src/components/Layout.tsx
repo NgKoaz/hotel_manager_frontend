@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -15,16 +15,27 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
+  
+  const { isAdmin, checkedProfile } = useAuth();
 
-  const navigation = [
+  const [navigation, setNavigation] = useState([
     { name: 'Rooms', href: '/rooms' },
     { name: 'Booking', href: '/booking' },
     { name: 'Account', href: '/account' },
     { name: 'About', href: '/about' },
-    { name: 'Management', href: '/management' },
-
-  ];
-
+  ]);
+  
+  useEffect(() => {
+    if (!checkedProfile) return;
+  
+    if (isAdmin()) {
+      setNavigation((prev) => [
+        ...prev,
+        { name: 'Management', href: '/management' },
+      ]);
+    }
+  }, [checkedProfile]);
+ 
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
       {/* Header */}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Coffee, Hotel, Users, Calendar, Settings, FileText, Percent, Tag, Layers, Bed, Link, Sliders, Image, User, Shield, Star, Eye, BedDouble, CreditCard, AlertCircle } from 'lucide-react';
@@ -18,6 +18,9 @@ import BookingPage from '@/pages/Management/BookingPage/BookingPage';
 import RoomTypeBedTypePage from './Management/RoomTypeBedTypePage';
 import PaymentTransactionPage from './Management/PaymentTransaction';
 import FeePage from './Management/FeePage';
+import { useNavigate } from 'react-router-dom';
+import { RoleEnum } from '@/enums/Role.enum';
+import { toast } from 'sonner';
 // import BookingItemPage from './Management/BookingItemPage';
 
 interface Feature {
@@ -29,8 +32,21 @@ interface Feature {
 }
 
 const AdminConfigPage: React.FC = () => {
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, roleIds, checkedProfile } = useAuth();
   const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!checkedProfile) {
+      return;
+    }
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+    if (roleIds.length == 0 || !roleIds.some(id => id == RoleEnum.Admin || id == RoleEnum.Receptionist)) {
+      navigate("/notfoundanything");
+    }
+  }, [isAuthenticated, roleIds, checkedProfile]);
 
   // if (!isAuthenticated || user?.role !== 'admin') {
   //   return <Navigate to="/login" />;
@@ -52,7 +68,7 @@ const AdminConfigPage: React.FC = () => {
     { id: 'user', name: 'User', description: 'Quản lý người dùng', icon: <User className="h-6 w-6 text-blue-400" />, component: UserPage },
     { id: 'userRole', name: 'User Role', description: 'Vai trò người dùng', icon: <Shield className="h-6 w-6 text-gray-700" />, component: UserRolePage },
     // { id: 'bookingItem', name: 'Booking Item', description: 'Quản lý các mục đặt phòng', icon: <Coffee className="h-6 w-6 text-yellow-500" />, component: BookingItemPage },
-    { id: 'fineFee', name: 'Fine Fee', description: 'Quản lý phí phạt', icon: <AlertCircle className="h-6 w-6 text-red-500" />, component: FeePage },
+    // { id: 'fineFee', name: 'Fine Fee', description: 'Quản lý phí phạt', icon: <AlertCircle className="h-6 w-6 text-red-500" />, component: FeePage },
   ];
   
 

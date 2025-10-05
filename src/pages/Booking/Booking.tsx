@@ -69,6 +69,16 @@ const BookingMulti: React.FC = () => {
 
   const addons: Addon[] = roomApiRes?.addons || [];
 
+  const { isAuthenticated, checkedProfile } = useAuth();
+  
+  useEffect(() => {
+    if (!checkedProfile) 
+      return;
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated]);
+
   useEffect(() => {
     roomApi.getAll()
       .then(setRoomApiRes)

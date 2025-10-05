@@ -22,10 +22,10 @@ const RoomCard = ({ roomType, roomApiRes }: RoomCardProps) => {
     const roomTypeBedTypes = roomApiRes.roomTypeBedTypes.filter(rtbt => rtbt.roomTypeId == roomType?.id);
     const bedTypes = roomApiRes.bedTypes;
 
-    const bedDisplay = roomTypeBedTypes.reduce((str, rtbt) => {
+    const bedDisplay = roomTypeBedTypes.reduce((str, rtbt, index) => {
         const betType = bedTypes.find(bt => bt.id == rtbt.bedTypeId)
-        const newStr = str + `${rtbt.quantity} ${betType.name}`
-        return !str ? newStr + " + " : newStr
+        const newStr = str + `${rtbt.quantity} ${betType.name}` + (index < roomTypeBedTypes.length - 1 ? " + " : "")
+        return newStr;
     }, "")
 
     const images = roomApiRes?.images.filter(img => 

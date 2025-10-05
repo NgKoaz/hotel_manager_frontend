@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Calendar, Settings } from 'lucide-react';
 import Profile from './Profile';
 import BookingHistoryCard from './BookingHistory/BookingHistory';
+import { useAuth } from '@/contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const Account: React.FC = () => {
+  const { isAuthenticated, checkedProfile } = useAuth();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (!checkedProfile) {
+      return;
+    }
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated, checkedProfile]);
+
+
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
